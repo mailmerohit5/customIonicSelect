@@ -1,0 +1,22 @@
+<div (click)="openSelectModal=true;this.flagFakeChange=true;" class="mySelect">
+  <input type="text"  [(ngModel)]="CountryId">
+</div>
+
+<div class="overLay" *ngIf="openSelectModal==true">
+  <div class="modalSelect">
+    <ion-list>
+      <ion-radio-group [(ngModel)]="CountryId" (ngModelChange)="modelChanged($event, CountryId)" (ionChange)=checkClose() >
+
+        <ion-item *ngFor="let item of countryCode">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="item.Flag" style="height: 40px;"></ion-img>
+          </ion-thumbnail>
+          <ion-label>{{item.Name}}</ion-label>
+          <ion-radio [value]="item.Code" ></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+    <ion-button (click)="openSelectModal=false" expand="block" style="margin-top:1rem;">Close</ion-button>
+  </div>
+</div>
